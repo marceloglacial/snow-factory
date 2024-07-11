@@ -11,8 +11,8 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                     <div className='grid gap-4'>
-                        <Button variant='outline' className='w-full'>
-                            Sign up with Google
+                        <Button variant='outline' className='w-full' asChild>
+                            <a href='/admin'>Sign up with Google</a>
                         </Button>
                     </div>
                 </CardContent>
