@@ -1,6 +1,6 @@
-interface IContentType {
-    icon: string
-    name: LocalizationType
-    slug: LocalizationType
+type ContentTypeType = {
+    icon: string,
+    name: LocalizationType,
+    slug: LocalizationType,
     collection: string
 }
