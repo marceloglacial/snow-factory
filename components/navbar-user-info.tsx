@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { APP_SETTINGS } from '@/constants'
 
 const NavbarUserInfo = () => {
     return (
@@ -19,6 +20,16 @@ const NavbarUserInfo = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end'>
                 <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuItem>
+                    <Link href={`${APP_SETTINGS.USERS_PATH}`} className='w-full' prefetch={false}>
+                        Users
+                    </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link href={APP_SETTINGS.SETTINGS_PATH} className='w-full' prefetch={false}>
+                        Settings
+                    </Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                     <Link className='w-full' href='/'>
