@@ -1,4 +1,4 @@
-import NavBar from './navbar'
+import NavBar from '@/components/navbar'
 
 const Aside = () => {
     return (

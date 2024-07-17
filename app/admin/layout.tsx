@@ -1,8 +1,6 @@
-'use client'
-import { TooltipProvider } from '@/components/ui/tooltip'
-import { Toaster } from '@/components/ui/sonner'
 import Aside from '@/components/aside'
 import NavBarHeader from '@/components/navbar-header'
+import TooltipWrapper from '@/components/tooltip-wrapper'
 
 export default function RootLayout({
     children,
@@ -10,7 +8,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <TooltipProvider>
+        <TooltipWrapper>
             <div className='flex min-h-screen w-full flex-col bg-muted/40'>
                 <Aside />
                 <div className='flex flex-col sm:gap-4 sm:py-4 sm:pl-14'>
@@ -20,7 +18,6 @@ export default function RootLayout({
                     </main>
                 </div>
             </div>
-            <Toaster position='top-center' richColors closeButton />
-        </TooltipProvider>
+        </TooltipWrapper>
     )
 }
