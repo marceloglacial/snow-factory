@@ -57,7 +57,7 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
                                                 <Link
-                                                    href={`./edit/${props.contentType}/${item.id}`}
+                                                    href={`./edit/${props.contentType}/${item.id}/${props.locale}`}
                                                 >
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>

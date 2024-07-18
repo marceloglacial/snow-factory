@@ -13,8 +13,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { getContentDataById } from '@/lib/contentType'
 import { UploadIcon } from 'lucide-react'
 
-const EditPage = async ({ params }: { params: { id: string; slug: string } }) => {
-    const response = await getContentDataById(params.slug, params.id)
+const EditPage = async ({ params }: { params: { slug: string[] } }) => {
+    const pageSlug = params.slug[0]
+    const pageId = params.slug[1]
+    const pageLocale = params.slug[2]
+
+    const response = await getContentDataById(pageSlug, pageId)
     const data = response.data
 
     return (
@@ -36,7 +40,7 @@ const EditPage = async ({ params }: { params: { id: string; slug: string } }) =>
                         <Card x-chunk='dashboard-07-chunk-0'>
                             <CardHeader>
                                 <CardTitle>Details</CardTitle>
-                                <CardDescription>Id: {params.id}</CardDescription>
+                                <CardDescription>Id: {pageId}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <div className='grid gap-6'>
@@ -46,7 +50,7 @@ const EditPage = async ({ params }: { params: { id: string; slug: string } }) =>
                                             id='name'
                                             type='text'
                                             className='w-full'
-                                            defaultValue={data.title.en}
+                                            defaultValue={data.title[pageLocale]}
                                         />
                                     </div>
                                     <div className='grid gap-3'>

@@ -3,6 +3,7 @@ interface IContentTable {
     description?: string
     contentType: string
     data: ContentTableData
+    locale: string
 }
 
 type ContentTableData = {

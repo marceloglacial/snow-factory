@@ -41,6 +41,7 @@ const ContentListPage = async ({ params }: { params: { slug: string } }) => {
                         title={pageInfo?.name.en || 'Loading'}
                         contentType={params.slug}
                         data={tab.data}
+                        locale={tab.locale}
                     />
                 </TabsContent>
             ))}
