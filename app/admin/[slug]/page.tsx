@@ -17,7 +17,7 @@ const ContentListPage = async ({ params }: { params: { slug: string } }) => {
     })
 
     return (
-        <Tabs defaultValue='en'>
+        <Tabs defaultValue='en' className='max-w-screen-2xl'>
             <div className='flex items-center'>
                 <TabsList>
                     {locales.map((locale, index) => (

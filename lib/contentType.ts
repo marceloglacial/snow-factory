@@ -75,3 +75,19 @@ export const getContentData = async (collection: string): Promise<any> => {
         }
     }
 }
+
+export const getContentDataById = async (collection: string, id: string): Promise<any> => {
+    try {
+        const response = await fetch(`${process.env.API_URL}/api/${collection}/id/${id}`, { cache: 'no-cache' })
+        const data = await response.json()
+        return data
+    } catch (e) {
+        console.error('Fetch Error:', e);
+        return {
+            error: {
+                message: 'Fetch error!',
+                error: e
+            }
+        }
+    }
+}

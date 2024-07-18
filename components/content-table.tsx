@@ -17,6 +17,7 @@ import {
     TableBody,
     TableCell,
 } from '@/components/ui/table'
+import Link from 'next/link'
 
 const ContentTable: FC<IContentTable> = (props): JSX.Element => {
     const hasItems = props.data.items.length > 0
@@ -54,8 +55,10 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                                     <TableCell>{item.updatedAt}</TableCell>
                                     <TableCell>
                                         <div className='flex gap-2'>
-                                            <Button variant='outline' size='icon'>
-                                                <Pencil className='h-4 w-4' />
+                                            <Button variant='outline' size='icon' asChild>
+                                                <Link href={`./edit/${item.id}`}>
+                                                    <Pencil className='h-4 w-4' />
+                                                </Link>
                                             </Button>
                                             <Button variant='outline' size='icon'>
                                                 <Trash2 className='h-4 w-4' />
