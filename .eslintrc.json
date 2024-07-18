@@ -8,5 +8,13 @@
                 "allow": ["warn", "error"]
             }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.d.ts"],
+            "rules": {
+                "no-unused-vars": "off"
+            }
+        }
+    ]
 }
