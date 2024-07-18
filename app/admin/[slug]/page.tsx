@@ -37,7 +37,11 @@ const ContentListPage = async ({ params }: { params: { slug: string } }) => {
             </div>
             {tabContent.map((tab, index) => (
                 <TabsContent value={tab.locale} key={index}>
-                    <ContentTable title={pageInfo?.name.en || 'Loaading'} data={tab.data} />
+                    <ContentTable
+                        title={pageInfo?.name.en || 'Loading'}
+                        contentType={params.slug}
+                        data={tab.data}
+                    />
                 </TabsContent>
             ))}
         </Tabs>

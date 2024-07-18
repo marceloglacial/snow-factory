@@ -1,6 +1,7 @@
 interface IContentTable {
     title: string
     description?: string
+    contentType: string
     data: ContentTableData
 }
 

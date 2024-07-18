@@ -13,8 +13,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { getContentDataById } from '@/lib/contentType'
 import { UploadIcon } from 'lucide-react'
 
-const EditPage = async ({ params }: { params: { id: string } }) => {
-    const response = await getContentDataById('pages', params.id)
+const EditPage = async ({ params }: { params: { id: string; slug: string } }) => {
+    const response = await getContentDataById(params.slug, params.id)
     const data = response.data
 
     return (
