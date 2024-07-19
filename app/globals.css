@@ -67,3 +67,74 @@
         @apply bg-background text-foreground;
     }
 }
+
+.tiptap {
+    min-height: 100%;
+}
+.tiptap:focus {
+    outline: none;
+}
+
+.tiptap ul {
+    list-style: circle;
+}
+.tiptap ol {
+    list-style: decimal;
+}
+
+.tiptap ul,
+ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+}
+.tiptap li p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+    line-height: 1.1;
+    text-wrap: pretty;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.tiptap h1 {
+    font-size: 1.4rem;
+}
+
+.tiptap h2 {
+    font-size: 1.2rem;
+}
+
+.tiptap h3 {
+    font-size: 1.1rem;
+}
+
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+    font-size: 1rem;
+}
+
+.tiptap blockquote {
+    border-left: 1px solid grey;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    font-style: italic;
+}
+
+.tiptap hr {
+    border: none;
+    border-top: 1px solid grey;
+    margin: 2rem 0;
+}
+
+.tiptap p {
+    margin-bottom: 1rem;
+}

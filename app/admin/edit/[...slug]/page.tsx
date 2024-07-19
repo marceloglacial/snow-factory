@@ -1,3 +1,4 @@
+import RichTextEditor from '@/components/richtext-editor'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -9,9 +10,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
+import { APP_SETTINGS } from '@/constants'
 import { getContentDataById } from '@/lib/contentType'
 import { UploadIcon } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const EditPage = async ({ params }: { params: { slug: string[] } }) => {
     const pageSlug = params.slug[0]
@@ -29,8 +32,8 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                         Edit Item
                     </h1>
                     <div className='hidden items-center gap-2 md:ml-auto md:flex'>
-                        <Button variant='outline' size='sm'>
-                            Discard
+                        <Button variant='outline' size='sm' asChild>
+                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${pageSlug}`}>Discard</Link>
                         </Button>
                         <Button size='sm'>Save</Button>
                     </div>
@@ -55,11 +58,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                                     </div>
                                     <div className='grid gap-3'>
                                         <Label htmlFor='description'>Description</Label>
-                                        <Textarea
-                                            id='description'
-                                            defaultValue='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies ultricies, nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc.'
-                                            className='min-h-32'
-                                        />
+                                        <RichTextEditor content={data.content[`${pageLocale}`]} />
                                     </div>
                                 </div>
                             </CardContent>
@@ -97,12 +96,13 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                             </CardHeader>
                             <CardContent>
                                 <div className='grid gap-2'>
-                                    <img
+                                    <Image
                                         alt='Product image'
                                         className='aspect-square w-full rounded-md object-cover'
                                         height='300'
-                                        src='https://images.unsplash.com/photo-1610056494052-6a4f83a8368c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                                        src={data.image.src}
                                         width='300'
+                                        priority
                                     />
                                     <div className=''>
                                         <button className='flex w-full items-center justify-center rounded-md border border-dashed p-4'>

@@ -24,18 +24,6 @@ export const getContentTypes = async (): Promise<ContentTypeType[]> => {
             },
             collection: 'events',
         },
-        {
-            name: {
-                en: 'Forms',
-                'pt-BR': 'Formulários',
-            },
-            icon: 'form',
-            slug: {
-                en: 'forms',
-                'pt-BR': 'events',
-            },
-            collection: 'forms',
-        },
     ]
 }
 
