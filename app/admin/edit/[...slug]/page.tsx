@@ -1,4 +1,4 @@
-import RichTextEditor from '@/components/richtext-editor'
+import ContentType from '@/components/content-type'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -23,9 +23,10 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
 
     const response = await getContentDataById(pageSlug, pageId)
     const data = response.data
+    const content = data.content
 
     return (
-        <div className='grid flex-1 items-start gap-4'>
+        <form className='grid flex-1 items-start gap-4'>
             <div className='grid flex-1 auto-rows-max gap-4'>
                 <div className='flex items-center gap-4'>
                     <h1 className='flex-1 shrink-0 whitespace-nowrap text-4xl font-semibold tracking-tight sm:grow-0'>
@@ -57,8 +58,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                                         />
                                     </div>
                                     <div className='grid gap-3'>
-                                        <Label htmlFor='description'>Description</Label>
-                                        <RichTextEditor content={data.content[`${pageLocale}`]} />
+                                        <ContentType data={content} locale={pageLocale} />
                                     </div>
                                 </div>
                             </CardContent>
@@ -136,7 +136,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                     <Button size='sm'>Save Product</Button>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 export default EditPage

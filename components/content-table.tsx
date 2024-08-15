@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react'
 import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -18,11 +19,13 @@ import {
     TableCell,
 } from '@/components/ui/table'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 const ContentTable: FC<IContentTable> = (props): JSX.Element => {
-    const hasItems = props.data.items.length > 0
+    const hasItems = props.data.length > 0
+    const params = useParams()
     return (
-        <Card x-chunk='dashboard-06-chunk-0'>
+        <Card>
             <CardHeader>
                 <CardTitle>{props.title}</CardTitle>
                 {props.description && <CardDescription>{props.description}</CardDescription>}
@@ -48,16 +51,22 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {props.data.items.map((item) => (
+                            {props.data.map((item) => (
                                 <TableRow key={item.id}>
-                                    <TableCell className='font-medium'>{item.title}</TableCell>
-                                    <TableCell>{item.status}</TableCell>
+                                    <TableCell className='font-medium'>
+                                        <Link
+                                            href={`./edit/${params.slug}/${item.id}/${props.locale}`}
+                                        >
+                                            {item.title[props.locale]}
+                                        </Link>
+                                    </TableCell>
+                                    <TableCell>Published</TableCell>
                                     <TableCell>{item.updatedAt}</TableCell>
                                     <TableCell>
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
                                                 <Link
-                                                    href={`./edit/${props.contentType}/${item.id}/${props.locale}`}
+                                                    href={`./edit/${params.slug}/${item.id}/${props.locale}`}
                                                 >
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>
@@ -76,8 +85,7 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
             {hasItems && (
                 <CardFooter>
                     <div className='text-xs text-muted-foreground'>
-                        Showing <strong>1-10</strong> of <strong>32</strong>
-                        items
+                        Showing <strong>10</strong> items
                     </div>
                 </CardFooter>
             )}

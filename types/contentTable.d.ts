@@ -1,9 +1,8 @@
 interface IContentTable {
     title: string
     description?: string
-    contentType: string
-    data: ContentTableData
     locale: string
+    data: any[]
 }
 
 type ContentTableData = {
