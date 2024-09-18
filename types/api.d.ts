@@ -5,6 +5,7 @@ type ApiResponse = {
 }
 
 type StatusType = {
+    error?: any,
     code: number,
     message: string
 }

@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import Icon from '@/components/icon'
 import { APP_SETTINGS } from '@/constants'
-import { getContentTypes } from '@/lib/contentType'
+import { getCollections } from '@/lib'
 
 const NavbarMenu = async () => {
-    const data = await getContentTypes()
+    const data = await getCollections()
 
-    if ('error' in data) return <>Error: {data.status.message}</>
+    if ('error' in data.status) return <>Error: {data.status.message}</>
 
     return (
         <nav className='hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6'>
@@ -29,11 +29,11 @@ const NavbarMenu = async () => {
                 return (
                     <Link
                         key={index}
-                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.collection}`}
+                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.id}`}
                         className='text-muted-foreground transition-colors hover:text-foreground'
                         prefetch={false}
                     >
-                        {item.name[APP_SETTINGS.DEFAULT_LOCALE]}
+                        {item.title[APP_SETTINGS.DEFAULT_LOCALE]}
                     </Link>
                 )
             })}

@@ -4,7 +4,8 @@ import { getPageData } from '@/lib'
 const Page = async ({ params }: { params: { slug: string } }) => {
     const data = await getPageData(params.slug)
 
-    if (data.status.code === 400) return <>Error: {data.status.message}</>
+    if ('error' in data.status) return <>Error: {data.status.message}</>
+
     const tableData = data.data
 
     return (

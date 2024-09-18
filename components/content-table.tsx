@@ -1,3 +1,4 @@
+'use client'
 import { FC } from 'react'
 import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -18,8 +19,10 @@ import {
     TableCell,
 } from '@/components/ui/table'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 const ContentTable: FC<IContentTable> = (props): JSX.Element => {
+    const params = useParams()
     const hasItems = props.data.items.length > 0
     return (
         <Card x-chunk='dashboard-06-chunk-0'>
@@ -41,22 +44,20 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead className='w-[10px]'>ID</TableHead>
                                 <TableHead className='w-auto'>Title</TableHead>
-                                <TableHead className='w-32'>Status</TableHead>
-                                <TableHead className=' w-1/4'>Updated at</TableHead>
                                 <TableHead className='w-[100px]'>Action</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {props.data.items.map((item) => (
                                 <TableRow key={item.id}>
-                                    <TableCell className='font-medium'>{item.title}</TableCell>
-                                    <TableCell>{item.status}</TableCell>
-                                    <TableCell>{item.updatedAt}</TableCell>
+                                    <TableCell className='font-medium'>{item.id}</TableCell>
+                                    <TableCell>{item.title}</TableCell>
                                     <TableCell>
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
-                                                <Link href={`./edit/${item.id}`}>
+                                                <Link href={`./edit/${params.slug}/${item.id}`}>
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>
                                             </Button>

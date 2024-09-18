@@ -1,3 +1,4 @@
+export * from './collections'
 export * from './events'
 export * from './forms'
 export * from './pages'

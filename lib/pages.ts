@@ -1,5 +1,5 @@
 import { APP_SETTINGS } from '@/constants';
-import { getContentData, getContentTypeByCollection } from '@/lib'
+import { getCollectionById, getContent } from '@/lib'
 
 interface PageDataResponse {
     data: {
@@ -10,13 +10,14 @@ interface PageDataResponse {
     status: StatusType
 }
 
-export const getPageData = async (collection: string): Promise<PageDataResponse> => {
+export const getPageData = async (id: string): Promise<PageDataResponse> => {
     try {
-        const contentType = await getContentTypeByCollection(collection)
-        const contentData = await getContentData(collection)
-        const tableData = {
-            ...contentData,
-            data: contentData.data.map(item => {
+        const collection = await getCollectionById(id)
+        const content = await getContent(id)
+
+        const table = {
+            ...content,
+            data: content.data.map((item: any) => {
                 return {
                     ...item,
                     title: item.title[APP_SETTINGS.DEFAULT_LOCALE],
@@ -27,9 +28,9 @@ export const getPageData = async (collection: string): Promise<PageDataResponse>
 
         return {
             data: {
-                title: contentType.name[APP_SETTINGS.DEFAULT_LOCALE],
-                items: tableData.data,
-                total: tableData.data.length,
+                title: collection.data.title[APP_SETTINGS.DEFAULT_LOCALE],
+                items: table.data,
+                total: table.data.length,
             },
             status: {
                 code: 200,
@@ -40,6 +41,7 @@ export const getPageData = async (collection: string): Promise<PageDataResponse>
         console.error('Fetch Error:', e);
         return {
             status: {
+                error: e,
                 code: 400,
                 message: 'Error fetching data'
             },
@@ -50,6 +52,4 @@ export const getPageData = async (collection: string): Promise<PageDataResponse>
             }
         }
     }
-
-
 }
