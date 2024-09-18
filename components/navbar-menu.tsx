@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import Icon from '@/components/icon'
 import { APP_SETTINGS } from '@/constants'
-import { getSiteInfo } from '@/lib/siteInfo'
 import { getContentTypes } from '@/lib/contentType'
 
 const NavbarMenu = async () => {
-    const siteInfo = await getSiteInfo()
-    const menuItems = await getContentTypes()
+    const data = await getContentTypes()
+
+    if ('error' in data) return <>Error: {data.status.message}</>
+
     return (
         <nav className='hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6'>
             <Link
@@ -15,7 +16,7 @@ const NavbarMenu = async () => {
                 prefetch={false}
             >
                 <Icon icon='home' />
-                <span className='sr-only'>{siteInfo.name}</span>
+                <span className='sr-only'>Home</span>
             </Link>
             <Link
                 href={APP_SETTINGS.DASHBOARD_PATH}
@@ -24,15 +25,15 @@ const NavbarMenu = async () => {
             >
                 Dashboard
             </Link>
-            {menuItems.map((item, index) => {
+            {data.data.map((item, index) => {
                 return (
                     <Link
                         key={index}
-                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.slug.en}`}
+                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.collection}`}
                         className='text-muted-foreground transition-colors hover:text-foreground'
                         prefetch={false}
                     >
-                        {item.name.en}
+                        {item.name[APP_SETTINGS.DEFAULT_LOCALE]}
                     </Link>
                 )
             })}

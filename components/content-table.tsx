@@ -56,9 +56,7 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                                     <TableCell>
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
-                                                <Link
-                                                    href={`./edit/${props.contentType}/${item.id}/${props.locale}`}
-                                                >
+                                                <Link href={`./edit/${item.id}`}>
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>
                                             </Button>
@@ -76,7 +74,7 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
             {hasItems && (
                 <CardFooter>
                     <div className='text-xs text-muted-foreground'>
-                        Showing <strong>1-10</strong> of <strong>32</strong>
+                        <strong>{props.data.total} </strong>
                         items
                     </div>
                 </CardFooter>
