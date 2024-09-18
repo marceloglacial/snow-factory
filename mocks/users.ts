@@ -2,6 +2,7 @@ type UsersType = {
     id: string,
     title: LocalizationType,
     slug: LocalizationType
+    avatar: string
 }
 
 export const users: UsersType[] = [
@@ -14,7 +15,8 @@ export const users: UsersType[] = [
         slug: {
             en: 'john-doe',
             'pt-BR': 'joao-silva'
-        }
+        },
+        avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
     },
     {
         id: '2',
@@ -25,7 +27,8 @@ export const users: UsersType[] = [
         slug: {
             en: 'jane-smith',
             'pt-BR': 'maria-oliveira'
-        }
+        },
+        avatar: 'https://randomuser.me/api/portraits/women/2.jpg'
     },
     {
         id: '3',
@@ -36,7 +39,8 @@ export const users: UsersType[] = [
         slug: {
             en: 'michael-johnson',
             'pt-BR': 'miguel-ferreira'
-        }
+        },
+        avatar: 'https://randomuser.me/api/portraits/men/3.jpg'
     },
     {
         id: '4',
@@ -47,7 +51,8 @@ export const users: UsersType[] = [
         slug: {
             en: 'emily-davis',
             'pt-BR': 'emilia-costa'
-        }
+        },
+        avatar: 'https://randomuser.me/api/portraits/women/4.jpg'
     },
     {
         id: '5',
@@ -58,7 +63,8 @@ export const users: UsersType[] = [
         slug: {
             en: 'william-brown',
             'pt-BR': 'guilherme-souza'
-        }
+        },
+        avatar: 'https://randomuser.me/api/portraits/men/5.jpg'
     },
     {
         id: '6',
@@ -69,160 +75,7 @@ export const users: UsersType[] = [
         slug: {
             en: 'elizabeth-wilson',
             'pt-BR': 'isabela-ramos'
-        }
-    },
-    {
-        id: '7',
-        title: {
-            en: 'James Taylor',
-            'pt-BR': 'Tiago Lima'
         },
-        slug: {
-            en: 'james-taylor',
-            'pt-BR': 'tiago-lima'
-        }
-    },
-    {
-        id: '8',
-        title: {
-            en: 'Sophia Martinez',
-            'pt-BR': 'Sofia Martins'
-        },
-        slug: {
-            en: 'sophia-martinez',
-            'pt-BR': 'sofia-martins'
-        }
-    },
-    {
-        id: '9',
-        title: {
-            en: 'David Anderson',
-            'pt-BR': 'Davi Alves'
-        },
-        slug: {
-            en: 'david-anderson',
-            'pt-BR': 'davi-alves'
-        }
-    },
-    {
-        id: '10',
-        title: {
-            en: 'Charlotte Thomas',
-            'pt-BR': 'Carolina Rocha'
-        },
-        slug: {
-            en: 'charlotte-thomas',
-            'pt-BR': 'carolina-rocha'
-        }
-    },
-    {
-        id: '11',
-        title: {
-            en: 'Daniel Garcia',
-            'pt-BR': 'Danilo Silva'
-        },
-        slug: {
-            en: 'daniel-garcia',
-            'pt-BR': 'danilo-silva'
-        }
-    },
-    {
-        id: '12',
-        title: {
-            en: 'Olivia Harris',
-            'pt-BR': 'Olívia Souza'
-        },
-        slug: {
-            en: 'olivia-harris',
-            'pt-BR': 'olivia-souza'
-        }
-    },
-    {
-        id: '13',
-        title: {
-            en: 'Henry Lewis',
-            'pt-BR': 'Henrique Costa'
-        },
-        slug: {
-            en: 'henry-lewis',
-            'pt-BR': 'henrique-costa'
-        }
-    },
-    {
-        id: '14',
-        title: {
-            en: 'Amelia Clark',
-            'pt-BR': 'Amélia Ribeiro'
-        },
-        slug: {
-            en: 'amelia-clark',
-            'pt-BR': 'amelia-ribeiro'
-        }
-    },
-    {
-        id: '15',
-        title: {
-            en: 'Samuel Walker',
-            'pt-BR': 'Samuel Pereira'
-        },
-        slug: {
-            en: 'samuel-walker',
-            'pt-BR': 'samuel-pereira'
-        }
-    },
-    {
-        id: '16',
-        title: {
-            en: 'Grace Hall',
-            'pt-BR': 'Graça Carvalho'
-        },
-        slug: {
-            en: 'grace-hall',
-            'pt-BR': 'graca-carvalho'
-        }
-    },
-    {
-        id: '17',
-        title: {
-            en: 'Alexander King',
-            'pt-BR': 'Alexandre Reis'
-        },
-        slug: {
-            en: 'alexander-king',
-            'pt-BR': 'alexandre-reis'
-        }
-    },
-    {
-        id: '18',
-        title: {
-            en: 'Victoria Wright',
-            'pt-BR': 'Vitória Santos'
-        },
-        slug: {
-            en: 'victoria-wright',
-            'pt-BR': 'vitoria-santos'
-        }
-    },
-    {
-        id: '19',
-        title: {
-            en: 'Benjamin Scott',
-            'pt-BR': 'Benjamim Mendes'
-        },
-        slug: {
-            en: 'benjamin-scott',
-            'pt-BR': 'benjamim-mendes'
-        }
-    },
-    {
-        id: '20',
-        title: {
-            en: 'Isabella Young',
-            'pt-BR': 'Isabela Monteiro'
-        },
-        slug: {
-            en: 'isabella-young',
-            'pt-BR': 'isabela-monteiro'
-        }
+        avatar: 'https://randomuser.me/api/portraits/women/6.jpg'
     }
-]
+];

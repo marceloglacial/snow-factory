@@ -9,13 +9,14 @@ import {
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { APP_SETTINGS } from '@/constants'
+import { users } from '@/mocks'
 
 const NavbarUserInfo = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant='outline' size='icon' className='overflow-hidden rounded-full'>
-                    Image
+                    <img src={users[0].avatar} alt={''} className='w-full h-full' />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end'>

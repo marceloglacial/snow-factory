@@ -6,8 +6,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
     const collection = await getCollectionById(collectionId)
     const content = await getContentById(collectionId, contentId)
 
-    const hasError = 'error' in collection.status
-    if (hasError) return <>Error: {collection.status.message}</>
+    if ('error' in collection.status) return <>Error: {collection.status.message}</>
 
     return (
         <>

@@ -33,4 +33,13 @@ export const collections: CollectionsType[] = [
         icon: 'form',
         fields: []
     },
+    {
+        id: 'users',
+        title: {
+            en: 'Users',
+            'pt-BR': 'Usuários',
+        },
+        icon: 'form',
+        fields: []
+    },
 ]
