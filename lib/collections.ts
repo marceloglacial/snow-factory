@@ -1,4 +1,5 @@
 import { collections } from '@/mocks';
+import { localizedContent } from './utils';
 
 export const getCollections = async (): Promise<CollectionsApiResponse> => {
     try {
@@ -35,12 +36,12 @@ export const getCollections = async (): Promise<CollectionsApiResponse> => {
     }
 }
 
-export const getCollectionById = async (id: string): Promise<CollectionApiResponse> => {
+export const getCollectionById = async (id: string, locale?: string): Promise<CollectionApiResponse> => {
     const collections = await getCollections()
     const data = collections.data.find((item: any) => item.id === id)
     if (!data) throw Error
     return {
         ...collections,
-        data
+        data: localizedContent(data, locale)
     };
 }

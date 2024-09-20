@@ -1,5 +1,5 @@
 type CollectionsType = {
-    title: LocalizationType,
+    title: string,
     icon?: string,
     id: string
     fields: FieldType[]

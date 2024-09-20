@@ -1,7 +1,7 @@
 type PagesType = {
     id: string,
-    title: LocalizationType,
-    slug: LocalizationType
+    title: sring,
+    slug: string
 }
 
 type ContentApiResponse = ApiResponse & {

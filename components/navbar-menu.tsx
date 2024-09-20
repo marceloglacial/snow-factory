@@ -9,7 +9,7 @@ const NavbarMenu = async () => {
     if ('error' in data.status) return <>Error: {data.status.message}</>
 
     return (
-        <nav className='hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6'>
+        <nav className='navbar-menu hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6'>
             <Link
                 href={APP_SETTINGS.DASHBOARD_PATH}
                 className='flex items-center gap-2 text-lg font-semibold md:text-base'

@@ -1,5 +1,6 @@
 export * from './collections'
 export * from './events'
 export * from './forms'
+export * from './locales'
 export * from './pages'
 export * from './users'

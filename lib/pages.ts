@@ -1,4 +1,3 @@
-import { APP_SETTINGS } from '@/constants';
 import { getCollectionById, getContent } from '@/lib'
 
 interface PageDataResponse {
@@ -10,27 +9,16 @@ interface PageDataResponse {
     status: StatusType
 }
 
-export const getPageData = async (id: string): Promise<PageDataResponse> => {
+export const getPageData = async (id: string, locale?: string): Promise<PageDataResponse> => {
     try {
-        const collection = await getCollectionById(id)
-        const content = await getContent(id)
-
-        const table = {
-            ...content,
-            data: content.data.map((item: any) => {
-                return {
-                    ...item,
-                    title: item.title[APP_SETTINGS.DEFAULT_LOCALE],
-                    slug: item.slug[APP_SETTINGS.DEFAULT_LOCALE]
-                }
-            })
-        }
+        const collection = await getCollectionById(id, locale)
+        const content = await getContent(id, locale)
 
         return {
             data: {
-                title: collection.data.title[APP_SETTINGS.DEFAULT_LOCALE],
-                items: table.data,
-                total: table.data.length,
+                title: collection.data.title,
+                items: content.data,
+                total: content.data.length,
             },
             status: {
                 code: 200,

@@ -1,8 +1,9 @@
 import ContentTable from '@/components/content-table'
 import { getPageData } from '@/lib'
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-    const data = await getPageData(params.slug)
+const Page = async ({ params }: { params: { slug: string[] } }) => {
+    const [locale, slug] = params.slug
+    const data = await getPageData(slug, locale)
 
     if ('error' in data.status) return <>Error: {data.status.message}</>
 

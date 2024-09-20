@@ -1,3 +1,4 @@
+import { APP_SETTINGS } from '@/constants'
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -20,3 +21,21 @@ export const formataData = (data: any, locale: string): ContentTableData => {
         items: result
     }
 }
+
+export const localizedContent = (
+    content: Content,
+    locale?: string,
+): any => {
+    const fallbackLocale: string = APP_SETTINGS.DEFAULT_LOCALE
+    return Object.keys(content).reduce((acc: LocalizedContent, key: string) => {
+        const value = content[key];
+        if (typeof value === 'object') {
+            acc[key] = value[locale || fallbackLocale] || `Missing ${locale}`;
+        } else {
+            acc[key] = value;
+        }
+        return acc;
+    }, {});
+};
+
+export const localizedData = (data: any, locale?: string): any => data.map((item: Content) => localizedContent(item, locale))
