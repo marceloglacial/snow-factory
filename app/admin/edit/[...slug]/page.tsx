@@ -27,7 +27,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
             <div className='mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4'>
                 <div className='flex items-center gap-4'>
                     <Button variant='outline' size='icon' className='h-7 w-7' asChild>
-                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${collectionId}`}>
+                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
                             <ChevronLeft className='h-4 w-4' />
                             <span className='sr-only'>Back</span>
                         </Link>
@@ -37,7 +37,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                     </h1>
                     <div className='hidden items-center gap-2 md:ml-auto md:flex'>
                         <Button variant='outline' size='sm' asChild>
-                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${collectionId}`}>
+                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
                                 Discard
                             </Link>
                         </Button>
@@ -140,7 +140,9 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                 </div>
                 <div className='flex items-center justify-center gap-2 md:hidden'>
                     <Button variant='outline' size='sm' asChild>
-                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${collectionId}`}>Discard</Link>
+                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
+                            Discard
+                        </Link>
                     </Button>
                     <Button size='sm'>Save Product</Button>
                 </div>

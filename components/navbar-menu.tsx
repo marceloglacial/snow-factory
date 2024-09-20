@@ -4,7 +4,8 @@ import { APP_SETTINGS } from '@/constants'
 import { getCollections } from '@/lib'
 
 const NavbarMenu = async () => {
-    const data = await getCollections()
+    const locale = APP_SETTINGS.DEFAULT_LOCALE
+    const data = await getCollections(locale)
 
     if ('error' in data.status) return <>Error: {data.status.message}</>
 
@@ -29,11 +30,11 @@ const NavbarMenu = async () => {
                 return (
                     <Link
                         key={index}
-                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.id}`}
+                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${item.id}`}
                         className='text-muted-foreground transition-colors hover:text-foreground'
                         prefetch={false}
                     >
-                        {item.title[APP_SETTINGS.DEFAULT_LOCALE]}
+                        {item.title}
                     </Link>
                 )
             })}

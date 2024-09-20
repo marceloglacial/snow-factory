@@ -1,7 +1,7 @@
 import { collections } from '@/mocks';
-import { localizedContent } from './utils';
+import { localizedContent, localizedData } from './utils';
 
-export const getCollections = async (): Promise<CollectionsApiResponse> => {
+export const getCollections = async (locale?: string): Promise<CollectionsApiResponse> => {
     try {
         // const response = await fetch(`${process.env.API_URL}/api/${collection}`, { cache: 'no-cache' })
         // const data = await response.json()
@@ -16,7 +16,7 @@ export const getCollections = async (): Promise<CollectionsApiResponse> => {
                 pages: 0,
                 page: 0
             },
-            data: collections
+            data: localizedData(collections, locale)
         }
     } catch (e) {
         console.error('Fetch Error:', e);

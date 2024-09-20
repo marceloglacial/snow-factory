@@ -20,9 +20,12 @@ import {
 } from '@/components/ui/table'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { APP_SETTINGS } from '@/constants'
 
 const ContentTable: FC<IContentTable> = (props): JSX.Element => {
     const params = useParams()
+    const [locale, collection] = params.slug as string[]
+
     const hasItems = props.data.items.length > 0
     return (
         <Card x-chunk='dashboard-06-chunk-0'>
@@ -57,7 +60,9 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                                     <TableCell>
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
-                                                <Link href={`./edit/${params.slug}/${item.id}`}>
+                                                <Link
+                                                    href={`${APP_SETTINGS.DASHBOARD_PATH}/edit/${locale}/${collection}/${item.id}`}
+                                                >
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>
                                             </Button>
