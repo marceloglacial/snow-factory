@@ -39,3 +39,11 @@ export const localizedContent = (
 };
 
 export const localizedData = (data: any, locale?: string): any => data.map((item: Content) => localizedContent(item, locale))
+
+export const localizedUrl = (pathname: string, newLocale: string): string => {
+    const localePattern = /^\/[a-z]{2}-[A-Z]{2}/
+
+    return localePattern.test(pathname)
+        ? pathname.replace(localePattern, `/${newLocale}`)
+        : `/${newLocale}${pathname}`
+}

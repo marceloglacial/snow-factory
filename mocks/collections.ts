@@ -1,3 +1,10 @@
+type CollectionsType = {
+    id: string,
+    title: LocalizationType,
+    icon: string,
+    fields: any[],
+}
+
 export const collections: CollectionsType[] = [
     {
         id: 'pages',

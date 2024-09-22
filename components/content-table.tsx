@@ -24,7 +24,6 @@ import { APP_SETTINGS } from '@/constants'
 
 const ContentTable: FC<IContentTable> = (props): JSX.Element => {
     const params = useParams()
-    const [locale, collection] = params.slug as string[]
 
     const hasItems = props.data.items.length > 0
     return (
@@ -61,7 +60,7 @@ const ContentTable: FC<IContentTable> = (props): JSX.Element => {
                                         <div className='flex gap-2'>
                                             <Button variant='outline' size='icon' asChild>
                                                 <Link
-                                                    href={`${APP_SETTINGS.DASHBOARD_PATH}/edit/${locale}/${collection}/${item.id}`}
+                                                    href={`${APP_SETTINGS.DASHBOARD_PATH}/${params.collection}/${item.id}`}
                                                 >
                                                     <Pencil className='h-4 w-4' />
                                                 </Link>

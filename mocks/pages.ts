@@ -1,3 +1,9 @@
+type PagesType = {
+    id: string,
+    title: LocalizationType,
+    slug: LocalizationType
+}
+
 export const pages: PagesType[] = [
     {
         id: '1',

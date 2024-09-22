@@ -11,14 +11,8 @@ export const locales: LocaleType[] = [
         id: '1',
         title: 'English',
         slug: 'en',
-        icon: '🇺🇸',
+        icon: '🇨🇦',
         isDefault: true
-    },
-    {
-        id: '2',
-        title: 'English (CA)',
-        slug: 'en-CA',
-        icon: '🇨🇦'
     },
     {
         id: '3',

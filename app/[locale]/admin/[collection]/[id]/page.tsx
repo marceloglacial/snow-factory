@@ -15,10 +15,13 @@ import { getCollectionById, getContentById } from '@/lib'
 import { ChevronLeft, Upload } from 'lucide-react'
 import Link from 'next/link'
 
-const EditPage = async ({ params }: { params: { slug: string[] } }) => {
-    const [locale, collectionId, contentId] = params.slug
-    const collection = await getCollectionById(collectionId, locale)
-    const content = await getContentById(collectionId, contentId, locale)
+const EditPage = async ({
+    params,
+}: {
+    params: { collection: string; locale: string; id: string }
+}) => {
+    const collection = await getCollectionById(params.collection, params.locale)
+    const content = await getContentById(params.collection, params.id, params.locale)
 
     if ('error' in collection.status) return <>Error: {collection.status.message}</>
 
@@ -27,7 +30,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
             <div className='mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4'>
                 <div className='flex items-center gap-4'>
                     <Button variant='outline' size='icon' className='h-7 w-7' asChild>
-                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
+                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${params.collection}`}>
                             <ChevronLeft className='h-4 w-4' />
                             <span className='sr-only'>Back</span>
                         </Link>
@@ -37,7 +40,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                     </h1>
                     <div className='hidden items-center gap-2 md:ml-auto md:flex'>
                         <Button variant='outline' size='sm' asChild>
-                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
+                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${params.collection}`}>
                                 Discard
                             </Link>
                         </Button>
@@ -81,12 +84,20 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                     <div className='grid auto-rows-max items-start gap-4 lg:gap-8'>
                         <Card x-chunk='dashboard-07-chunk-3'>
                             <CardHeader>
-                                <CardTitle>Product Status</CardTitle>
+                                <CardTitle>Localization</CardTitle>
+                            </CardHeader>
+                            <CardContent></CardContent>
+                        </Card>
+                        <Card x-chunk='dashboard-07-chunk-3'>
+                            <CardHeader>
+                                <CardTitle>Status</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className='grid gap-6'>
                                     <div className='grid gap-3'>
-                                        <Label htmlFor='status'>Status</Label>
+                                        <Label htmlFor='status' className='hidden'>
+                                            Status
+                                        </Label>
                                         <Select>
                                             <SelectTrigger id='status' aria-label='Select status'>
                                                 <SelectValue placeholder='Select status' />
@@ -140,7 +151,7 @@ const EditPage = async ({ params }: { params: { slug: string[] } }) => {
                 </div>
                 <div className='flex items-center justify-center gap-2 md:hidden'>
                     <Button variant='outline' size='sm' asChild>
-                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${collectionId}`}>
+                        <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/${params.collection}`}>
                             Discard
                         </Link>
                     </Button>

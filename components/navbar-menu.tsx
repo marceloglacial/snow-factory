@@ -1,14 +1,9 @@
 import Link from 'next/link'
 import Icon from '@/components/icon'
 import { APP_SETTINGS } from '@/constants'
-import { getCollections } from '@/lib'
+import { FC } from 'react'
 
-const NavbarMenu = async () => {
-    const locale = APP_SETTINGS.DEFAULT_LOCALE
-    const data = await getCollections(locale)
-
-    if ('error' in data.status) return <>Error: {data.status.message}</>
-
+const NavbarMenu: FC<NavbarMenuProps> = (props): JSX.Element => {
     return (
         <nav className='navbar-menu hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6'>
             <Link
@@ -26,11 +21,11 @@ const NavbarMenu = async () => {
             >
                 Dashboard
             </Link>
-            {data.data.map((item, index) => {
+            {props.items.map((item, index) => {
                 return (
                     <Link
                         key={index}
-                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${locale}/${item.id}`}
+                        href={`${APP_SETTINGS.DASHBOARD_PATH}/${item.id}`}
                         className='text-muted-foreground transition-colors hover:text-foreground'
                         prefetch={false}
                     >
