@@ -3,9 +3,6 @@ import { localizedContent, localizedData } from './utils';
 
 export const getCollections = async (locale?: string): Promise<CollectionsApiResponse> => {
     try {
-        // const response = await fetch(`${process.env.API_URL}/api/${collection}`, { cache: 'no-cache' })
-        // const data = await response.json()
-        // return data
         return {
             status: {
                 code: 200,
@@ -37,7 +34,7 @@ export const getCollections = async (locale?: string): Promise<CollectionsApiRes
 }
 
 export const getCollectionById = async (id: string, locale?: string): Promise<CollectionApiResponse> => {
-    const collections = await getCollections()
+    const collections = await getCollections(locale)
     const data = collections.data.find((item: any) => item.id === id)
     if (!data) throw Error
     return {
