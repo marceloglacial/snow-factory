@@ -23,7 +23,7 @@ const EditPage = async ({
     const collection = await getCollectionById(params.collection, params.locale)
     const content = await getContentById(params.collection, params.id, params.locale)
 
-    if ('error' in collection.status) return <>Error: {collection.status.message}</>
+    if ('error' in collection.status) throw Error
 
     return (
         <>

@@ -4,7 +4,7 @@ import { getPageData } from '@/lib'
 const Page = async ({ params }: { params: { collection: string; locale: string } }) => {
     const data = await getPageData(params.collection, params.locale)
 
-    if ('error' in data.status) return <>Error: {data.status.message}</>
+    if ('error' in data.status) throw Error
 
     const tableData = data.data
 
