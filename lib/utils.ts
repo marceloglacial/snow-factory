@@ -29,8 +29,9 @@ export const localizedContent = (
     const fallbackLocale: string = APP_SETTINGS.DEFAULT_LOCALE
     return Object.keys(content).reduce((acc: LocalizedContent, key: string) => {
         const value = content[key];
+
         if (typeof value === 'object') {
-            acc[key] = value[locale || fallbackLocale] || `Missing ${locale}`;
+            acc[key] = value[locale || fallbackLocale] || value;
         } else {
             acc[key] = value;
         }
