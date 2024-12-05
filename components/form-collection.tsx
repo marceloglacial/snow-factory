@@ -28,7 +28,7 @@ export const FormCollection: FC<FormCollectionProps> = (props): JSX.Element => {
     return (
         <form action={formAction}>
             {collection && (
-                <input type='hidden' name='id' defaultValue={collection?.id} id={collection?.id} />
+                <input type='hidden' name='id' defaultValue={collection.id} id={collection.id} />
             )}
             <Card className='mx-auto w-full max-w-screen-lg'>
                 <CardHeader>
