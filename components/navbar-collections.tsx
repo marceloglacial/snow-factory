@@ -20,20 +20,20 @@ export const NavbarCollections = async () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 {items.map((item) => (
-                    <DropdownMenuItem key={item.id}>
+                    <DropdownMenuItem key={item.id} asChild>
                         <Link
                             href={`${APP_SETTINGS.DASHBOARD_PATH}/collections/${item.id}`}
-                            className='w-full'
+                            className='w-full cursor-pointer'
                         >
                             {item.title}
                         </Link>
                     </DropdownMenuItem>
                 ))}
                 {items.length > 0 && <DropdownMenuSeparator />}
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                     <Link
                         href={`${APP_SETTINGS.DASHBOARD_PATH}/collections/new`}
-                        className='w-full'
+                        className='w-full cursor-pointer'
                     >
                         Add Collection
                     </Link>
