@@ -1,14 +1,5 @@
-type CollectionsType = {
-    title: string,
-    icon?: string,
-    id: string
-    fields: FieldType[]
-}
-
-type CollectionsApiResponse = ApiResponse & {
-    data: CollectionsType[]
-}
-
-type CollectionApiResponse = ApiResponse & {
-    data: CollectionsType
+type CollectionType = {
+  id: string
+  title: string
+  slug: string
 }
