@@ -33,7 +33,7 @@ export default function CollectionsPageNew() {
                             Cancel
                         </Link>
                     </Button>
-                    <FormSubmitButton>Add Collection</FormSubmitButton>
+                    <FormSubmitButton>Add</FormSubmitButton>
                 </CardFooter>
             </Card>
         </form>

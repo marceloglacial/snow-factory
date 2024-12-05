@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app'
-import { getFirestore, collection, getDocs, limit, orderBy, query, startAfter, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, limit, orderBy, query, startAfter, addDoc, doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
@@ -89,5 +89,108 @@ export const addDocToCollection = async (
     };
   } catch (e: any) {
     throw new Error(`Failed to add document to ${collectionId}: ${e.message}`);
+  }
+};
+
+export const getDocumentById = async (
+  collectionId: string,
+  docId: string
+): Promise<ApiResponse<any>> => {
+  try {
+    const docRef = doc(db, collectionId, docId);
+    const docSnapshot = await getDoc(docRef);
+
+    if (docSnapshot.exists()) {
+      return {
+        status: 'success',
+        message: 'Success',
+        data: { id: docSnapshot.id, ...docSnapshot.data() },
+        meta: {
+          totalCount: 0,
+          page: 0,
+          pageSize: 0,
+          hasNextPage: false
+        }
+      };
+    } else {
+      return {
+        status: 'error',
+        message: 'Document not found',
+        data: null,
+        meta: {
+          totalCount: 0,
+          page: 0,
+          pageSize: 0,
+          hasNextPage: false
+        }
+      };
+    }
+  } catch (e) {
+    console.error(e);
+    return {
+      status: 'error',
+      message: 'Error retrieving document',
+      data: null,
+      meta: {
+        totalCount: 0,
+        page: 0,
+        pageSize: 0,
+        hasNextPage: false
+      }
+    };
+  }
+};
+
+export const updateDocInCollection = async (
+  collectionId: string,
+  docId: string,
+  data: any
+): Promise<ApiResponse<any>> => {
+  try {
+    const docRef = doc(db, collectionId, docId);
+    await updateDoc(docRef, data);
+
+    const updatedDoc = await getDoc(docRef);
+
+    return {
+      status: 'success',
+      message: 'Document updated successfully',
+      meta: {
+        totalCount: 1,
+        page: 1,
+        pageSize: 1,
+        hasNextPage: false
+      },
+      data: {
+        id: updatedDoc.id,
+        ...updatedDoc.data()
+      }
+    };
+  } catch (e: any) {
+    throw new Error(`Failed to update document ${docId} in ${collectionId}: ${e.message}`);
+  }
+};
+
+export const deleteDocFromCollection = async (
+  collectionId: string,
+  docId: string
+): Promise<ApiResponse<null>> => {
+  try {
+    const docRef = doc(db, collectionId, docId);
+    await deleteDoc(docRef);
+
+    return {
+      status: 'success',
+      message: 'Document deleted successfully',
+      meta: {
+        totalCount: 0,
+        page: 0,
+        pageSize: 0,
+        hasNextPage: false
+      },
+      data: null
+    };
+  } catch (e: any) {
+    throw new Error(`Failed to delete document ${docId} from ${collectionId}: ${e.message}`);
   }
 };

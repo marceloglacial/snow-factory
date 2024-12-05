@@ -15,11 +15,12 @@ import { getCollectionById, getContentById } from '@/lib'
 import { ChevronLeft, Upload } from 'lucide-react'
 import Link from 'next/link'
 
-const EditPage = async ({
-    params,
-}: {
-    params: { collection: string; locale: string; id: string }
-}) => {
+const EditPage = async (
+    props: {
+        params: Promise<{ collection: string; locale: string; id: string }>
+    }
+) => {
+    const params = await props.params;
     const collection = await getCollectionById(params.collection, params.locale)
     const content = await getContentById(params.collection, params.id, params.locale)
 

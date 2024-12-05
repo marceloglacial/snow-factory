@@ -1,7 +1,8 @@
 import ContentTable from '@/components/content-table'
 import { getPageData } from '@/lib'
 
-const Page = async ({ params }: { params: { collection: string; locale: string } }) => {
+const Page = async (props: { params: Promise<{ collection: string; locale: string }> }) => {
+    const params = await props.params;
     const data = await getPageData(params.collection, params.locale)
 
     if ('error' in data.status) throw Error
