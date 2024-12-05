@@ -1,4 +1,5 @@
 import Navbar from '@/components/navbar'
+import { Toaster } from '@/components/ui/sonner'
 
 export default async function RootLayout({ children }: Readonly<RootLayoutProps>) {
     return (
@@ -7,6 +8,7 @@ export default async function RootLayout({ children }: Readonly<RootLayoutProps>
             <main className='flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 w-full max-w-screen-2xl mx-auto'>
                 {children}
             </main>
+            <Toaster richColors theme='light' position='top-center' />
         </div>
     )
 }

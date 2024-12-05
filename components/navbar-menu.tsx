@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Icon from '@/components/icon'
 import { APP_SETTINGS } from '@/constants'
 import { FC } from 'react'
-import { NavbarCollections } from './navbar-collections'
 
 const NavbarMenu: FC = (): JSX.Element => {
     return (
@@ -23,7 +22,13 @@ const NavbarMenu: FC = (): JSX.Element => {
                 Dashboard
             </Link>
             <div className='h-4 w-[1px] bg-border md:h-5' />
-            <NavbarCollections />
+            <Link
+                href={`${APP_SETTINGS.DASHBOARD_PATH}/collections`}
+                className='text-foreground transition-colors hover:text-foreground'
+                prefetch={false}
+            >
+                Collections
+            </Link>
         </nav>
     )
 }
