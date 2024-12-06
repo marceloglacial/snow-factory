@@ -16,12 +16,19 @@ const NavbarMenu: FC = (): JSX.Element => {
             </Link>
             <Link
                 href={APP_SETTINGS.DASHBOARD_PATH}
+                className='text-foreground transition-colors hover:text-foreground font-semibold'
+                prefetch={false}
+            >
+                {APP_SETTINGS.TITLE}
+            </Link>
+            <div className='h-4 w-[1px] bg-border md:h-5' />
+            <Link
+                href={`${APP_SETTINGS.DASHBOARD_PATH}/content`}
                 className='text-foreground transition-colors hover:text-foreground'
                 prefetch={false}
             >
-                Dashboard
+                Content
             </Link>
-            <div className='h-4 w-[1px] bg-border md:h-5' />
             <Link
                 href={`${APP_SETTINGS.DASHBOARD_PATH}/collections`}
                 className='text-foreground transition-colors hover:text-foreground'

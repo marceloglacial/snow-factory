@@ -12,7 +12,7 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 import { FormDeleteButton } from './form-delete-button'
 
-export const FormCollection: FC<FormProps> = (props): JSX.Element => {
+export const FormContent: FC<FormProps> = (props): JSX.Element => {
     const params = useParams() as ParamsType
     const collection = props.data
     const currentFormAction = collection ? updateCollection : createCollection
@@ -40,7 +40,7 @@ export const FormCollection: FC<FormProps> = (props): JSX.Element => {
                 )}
                 <Card>
                     <CardHeader>
-                        <CardTitle>{collection ? 'Update' : 'Add'} Collection</CardTitle>
+                        <CardTitle>Update Collection</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className='grid w-full items-center gap-4'>
@@ -66,7 +66,7 @@ export const FormCollection: FC<FormProps> = (props): JSX.Element => {
                     </CardContent>
                     <CardFooter className='flex gap-4 justify-end'>
                         <Button variant='outline' asChild>
-                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/collections`}>Cancel</Link>
+                            <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/content`}>Cancel</Link>
                         </Button>
                         <FormSubmitButton>{collection ? 'Update' : 'Add'}</FormSubmitButton>
                     </CardFooter>

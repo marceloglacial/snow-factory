@@ -6,6 +6,6 @@ type CollectionType = {
 }
 
 
-interface FormCollectionProps {
+interface FormProps {
   data?: CollectionType
 }
