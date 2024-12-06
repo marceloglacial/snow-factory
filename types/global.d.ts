@@ -12,3 +12,12 @@ type LocalizationType = {
 
 type LocalizedContent = { [key: string]: any };
 type Content = { [key: string]: { [locale: string]: string } | string };
+
+interface PageParamsProps {
+    params: ParamsType
+}
+
+type ParamsType = {
+    id: string
+    slug: string
+}

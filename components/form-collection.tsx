@@ -7,11 +7,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { APP_SETTINGS } from '@/constants'
-import { redirect } from 'next/navigation'
+import { redirect, useParams } from 'next/navigation'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import { FormDeleteButton } from './form-delete-button'
 
 export const FormCollection: FC<FormCollectionProps> = (props): JSX.Element => {
+    const params = useParams() as ParamsType
     const collection = props.data
     const currentFormAction = collection ? updateCollection : createCollection
     const [state, formAction] = useActionState(currentFormAction, null)
@@ -20,43 +22,57 @@ export const FormCollection: FC<FormCollectionProps> = (props): JSX.Element => {
         if (state) {
             toast.success(state)
             redirect(
-                `${APP_SETTINGS.DASHBOARD_PATH}/collections/${collection ? collection.id : ''}`
+                `${APP_SETTINGS.DASHBOARD_PATH}/${params.slug}/${collection ? collection.id : ''}`
             )
         }
     }, [state])
 
     return (
-        <form action={formAction}>
-            {collection && (
-                <input type='hidden' name='id' defaultValue={collection.id} id={collection.id} />
-            )}
-            <Card className='mx-auto w-full max-w-screen-lg'>
-                <CardHeader>
-                    <CardTitle>Update Collection</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className='grid w-full items-center gap-4'>
-                        <div className='flex flex-col space-y-1.5'>
-                            <Label htmlFor='title'>Title</Label>
-                            <Input
-                                id='title'
-                                name='title'
-                                defaultValue={collection?.title}
-                                required
-                            />
+        <div className='relative'>
+            <form action={formAction}>
+                {collection && (
+                    <input
+                        type='hidden'
+                        name='id'
+                        defaultValue={collection.id}
+                        id={collection.id}
+                    />
+                )}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Update Collection</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid w-full items-center gap-4'>
+                            <div className='flex flex-col space-y-1.5'>
+                                <Label htmlFor='title'>Title</Label>
+                                <Input
+                                    id='title'
+                                    name='title'
+                                    defaultValue={collection?.title}
+                                    required
+                                />
+                            </div>
+                            <div className='flex flex-col space-y-1.5'>
+                                <Label htmlFor='title'>Slug</Label>
+                                <Input
+                                    id='slub'
+                                    name='slug'
+                                    defaultValue={collection?.slug}
+                                    required
+                                />
+                            </div>
                         </div>
-                    </div>
-                </CardContent>
-                <CardFooter className='flex justify-between'>
-                    <div className='flex gap-2'>
+                    </CardContent>
+                    <CardFooter className='flex gap-4 justify-end'>
                         <Button variant='outline' asChild>
                             <Link href={`${APP_SETTINGS.DASHBOARD_PATH}/collections`}>Cancel</Link>
                         </Button>
-                        {collection && <Button variant='destructive'>Delete</Button>}
-                    </div>
-                    <FormSubmitButton>{collection ? 'Update' : 'Add'}</FormSubmitButton>
-                </CardFooter>
-            </Card>
-        </form>
+                        <FormSubmitButton>{collection ? 'Update' : 'Add'}</FormSubmitButton>
+                    </CardFooter>
+                </Card>
+            </form>
+            {collection && <FormDeleteButton collectionId={collection.id}>Delete</FormDeleteButton>}
+        </div>
     )
 }
